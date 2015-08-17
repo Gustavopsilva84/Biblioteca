@@ -1,0 +1,102 @@
+package trabalho;
+
+import java.util.ArrayList;
+
+public class Principal {
+
+    static void dadosCliente(Cliente cliente) {
+	System.out.printf(
+		"Informações do Cliente \n\nNome: %s\nEmail: %s\nRG: %s\nCPF: %s\nTelefone: %s\n"
+			+ "Livros que alugou: %s\nQuantidade de Livros: %s\n\n",
+		cliente.getNome(), cliente.getEmail(), cliente.getRg(), cliente.getCpf(), cliente.getTelefone(),
+		cliente.getLivroAlugado(), cliente.getLivros());
+
+    }
+
+    static void dadosLivros(Livro lx) {
+	System.out.printf(
+		"Informações do Livro\nNome do Livro: %s\nAutor do Livro: %s\nEditora do Livro: %s\nISBN: %s\n\n",
+		lx.getNome(), lx.getAutor(), lx.getEditora(), lx.getIsbn());
+    }
+
+    public static void alugarLivro(Cliente cliente, Livro livro) {
+	if (livro.getLivroAlugado() == false) {
+	    System.out.printf("Alugando Livro\n%s Acaba de Alugar o livro \"%s\"\n\n", cliente.getNome(),
+		    livro.getNome());
+	    livro.setLivroAlugado(true);
+	    cliente.setLivroAlugado(livro.getNome());
+	    cliente.setLivros(1);
+	} else {
+	    System.out.printf("Alugando Livro\n%s O livro \"%s\" está indisponivel!\n\n", cliente.getNome(),
+		    livro.getNome());
+	}
+    }
+
+    public static void devolverLivro(Cliente cliente, Livro livro) {
+	if (livro.getLivroAlugado() == true && cliente.getLivroAlugado() == livro.getNome()) {
+	    System.out.printf("Devolvendo Livro\nO livro %s foi devolvido com sucesso!\n\n", livro.getNome());
+	    livro.setLivroAlugado(false);
+	    cliente.setLivroAlugado("Nenhum");
+	    cliente.setLivros(0);
+	} else {
+	    System.out.printf("Devolvendo Livro\nDesculpe %s o senhor não tem o livro %s para devolver !\n\n",
+		    cliente.getNome(), livro.getNome());
+	}
+    }
+
+    public static void main(String[] args) {
+
+	Cliente c1 = new Cliente("Gustavo", "gustavopsilva@hotmail.com", "74.545.747-8", "456.789.542-32",
+		"97845-2445");
+	Cliente c2 = new Cliente("Felipe", "felipeoliveira@hotmail.com", "44.578.789-0", "978.457.785-21",
+		"94321-8343");
+	Cliente c3 = new Cliente("Henrique", "Henriquefigueredo@hotmail.com", "89.544.211-2", "789.458.124-93",
+		"97785-4421");
+
+	Livro l1 = new Livro("O rei Pedro", "Vinicius Andrade", "Março", "9128-3213");
+	Livro l2 = new Livro("O Conto de Bueno", "Vinicius Andrade", "Março", "9321-3432");
+	Livro l3 = new Livro("As aventuras de Diego", "Felipe Carneiro", "Blauer", "9546-4875");
+	Livro l4 = new Livro("Guia de Culinaria Volume IV", "André Coelho", "Caster", "9432-3212");
+	Livro l5 = new Livro("João o Grande", "Carlos Oliveira", "Caster", "9789-5123");
+	
+	c1.livroCliente = l1;
+	c1.livroCliente.getNome();
+
+	ArrayList<Cliente> Clientes = new ArrayList<Cliente>();
+
+	Clientes.add(c1);
+	Clientes.add(c2);
+	Clientes.add(c3);
+	System.out.println("Lista De CLientes");
+	for (Cliente cx : Clientes) {
+	    System.out.println("Nome:" + cx.getNome() + " Email:" + cx.getEmail() + " RG:" + cx.getRg() + " CPF:"
+		    + cx.getCpf() + " Telefone:" + cx.getTelefone() + "\n");
+	}
+
+	ArrayList<Livro> Livros = new ArrayList<Livro>();
+
+	Livros.add(l1);
+	Livros.add(l2);
+	Livros.add(l3);
+	Livros.add(l4);
+	Livros.add(l5);
+
+	System.out.println("Lista De Livros");
+	for (Livro lx : Livros) {
+	    System.out.println("Nome:" + lx.getNome() + " Autor:" + lx.getAutor() + " Editora:" + lx.getEditora()
+		    + " Código Isbn:" + lx.getIsbn() + " Livro Alugado ? " + lx.getLivroAlugado() + "\n");
+	}
+
+	dadosCliente(c1);
+	dadosLivros(l1);
+	alugarLivro(c1, l1);
+	alugarLivro(c2, l1);
+	dadosCliente(c1);
+	devolverLivro(c2, l1);
+	devolverLivro(c1, l1);
+	alugarLivro(c2, l1);
+	dadosCliente(c1);
+	dadosCliente(c2);
+
+    }
+}
