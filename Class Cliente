@@ -1,0 +1,70 @@
+package trabalho;
+
+import java.util.Date;
+
+public class Cliente {
+
+    private String nome, email, livroAlugado, rg, cpf, telefone;
+    private int livros;
+    Livro livroCliente;
+
+    Date data = new Date();
+
+    public Cliente() {
+	nome = null;
+	email = null;
+	rg = null;
+	cpf = null;
+	telefone = null;
+	livros = 0;
+	livroAlugado = "Nenhum";
+    }
+
+    public Cliente(String nome, String email, String rg, String cpf, String telefone) {
+	this.nome = nome;
+	this.email = email;
+	this.rg = rg;
+	this.cpf = cpf;
+	this.telefone = telefone;
+	this.livros = 0;
+	this.livroAlugado = "Nenhum";
+
+    }
+
+    public String getLivroAlugado() {
+	return this.livroAlugado;
+    }
+
+    public void setLivroAlugado(String nomeLivroAlugado) {
+	this.livroAlugado = nomeLivroAlugado;
+    }
+
+    public String getRg() {
+	return rg;
+    }
+
+    public String getCpf() {
+	return cpf;
+    }
+
+    public String getTelefone() {
+	return telefone;
+    }
+
+    public int getLivros() {
+	return livros;
+    }
+
+    public void setLivros(int livros) {
+	this.livros = livros;
+    }
+
+    public String getNome() {
+	return this.nome;
+    }
+
+    public String getEmail() {
+	return this.email;
+    }
+
+}
